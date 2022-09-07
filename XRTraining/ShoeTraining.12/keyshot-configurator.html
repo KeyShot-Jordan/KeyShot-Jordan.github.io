@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Keyshot Web Configurator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="keyshot-configurator.css">
+    <script type="text/javascript" src="keyshot-configurator.js"></script>
+    <script type="text/javascript" src="keyshot-configurator-modeldata.js"></script>
+    <script type="text/javascript" src="keyshot-configurator-imagemapping.js"></script>
+    <script type="text/javascript" src="keyshot-configurator-layoutsettings.js"></script>
+  </head>
+  <body>
+
+    <div id="main">
+      <img class="mainimg" src="" alt="" draggable="false">
+    </div>
+
+    <div class="panelarea layouthorizontal">
+      <template id="flowselectiontemplate">
+        <div class="flowwidget flowselection">
+          <div class="flowselectionheaderbox">
+            <div>
+              <div class="flowselectionheadermenu hidden">
+                <div class="flowheadertextbox">
+                  <span class="flowheadertext">: </span>
+                </div>
+                <!-- More div's -->
+              </div>
+              <div class="flowheadertextbox selected">
+                <span class="flowheadertext">: </span>
+                <span class="flowheadermarker ksfont-arrow-left"></span>
+                <span class="flowheadermarker ksfont-arrow-up"></span>
+              </div>
+            </div>
+            <div class="flowselectionheaderscrollbox">
+              <div class="flowselectionheaderscroller">
+                <span class="ksfont-angle-dbl-left"></span>
+              </div>
+              <div>1/7</div>
+              <div class="flowselectionheaderscroller">
+                <span class="ksfont-angle-dbl-right"></span>
+              </div>
+            </div>
+          </div>
+          <div class="flowwidgetbody flowselectionbody">
+            <div class="flowthumbnailitem">
+              <div>
+                <img src="" alt="">
+                <span>Item Label</span>
+              </div>
+            </div>
+            <div class="flowthumbnailitem">
+              <div>
+                <svg viewBox="0 0 512 512">
+                  <path d="M496 0l-480 0c-9 0-16 7-16 16l0 480c0 9 7 16 16 16l481 0c8 0 15-7 15-16l0-481c0-8-7-15-16-15z m-464 32l448 0 0 448-448 0z m332 200l-216 0c-13 0-23 11-23 24 0 13 10 24 23 24l214 0c14 0 24-11 24-24 0-13-9-24-22-24z"></path>
+                </svg>
+                <span>None</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template id="flowaccordiontemplate">
+        <div class="flowwidget flowaccordion">
+          <div class="flowaccordiongroup">
+            <div class="flowheadertextbox flowaccordionheader">
+              <span class="flowheadertext">: </span>
+              <span class="flowheadermarker ksfont-arrow-left"></span>
+              <span class="flowheadermarker ksfont-arrow-down"></span>
+            </div>
+            <div class="flowwidgetbody flowaccordiongroupbody">
+              <div class="flowthumbnailitem">
+                <div>
+                  <img src="" alt="">
+                  <span>Item Label</span>
+                </div>
+              </div>
+              <div class="flowthumbnailitem">
+                <div>
+                  <svg viewBox="0 0 512 512">
+                    <path d="M496 0l-480 0c-9 0-16 7-16 16l0 480c0 9 7 16 16 16l481 0c8 0 15-7 15-16l0-481c0-8-7-15-16-15z m-464 32l448 0 0 448-448 0z m332 200l-216 0c-13 0-23 11-23 24 0 13 10 24 23 24l214 0c14 0 24-11 24-24 0-13-9-24-22-24z"></path>
+                  </svg>
+                  <span>None</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- More 'flowaccordiongroup's -->
+        </div>
+      </template>
+      <template id="flowwidgetdraghandle">
+        <div class="flowwidgetdraghandle" draggable="false">
+          <div class="flowwidgetdraghandledot"></div>
+          <div class="flowwidgetdraghandledot"></div>
+          <div class="flowwidgetdraghandledot"></div>
+        </div>
+      </template>
+    </div>
+
+    <div class="toolbar">
+      <div id="toolbar-reset" class="toolbarbutton" title="Reset Configuration">
+        <span class="ksfont-reset"></span>
+      </div>
+      <div id="toolbar-savecfg" class="toolbarbutton" title="Save Configuration'">
+        <span class="ksfont-save-configuration"></span>
+      </div>
+      <div id="toolbar-zoomin" class="toolbarbutton" title="Zoom In">
+        <span class="ksfont-zoom-in"></span>
+      </div>
+      <div id="toolbar-zoomout" class="toolbarbutton" title="Zoom Out">
+        <span class="ksfont-zoom-out"></span>
+      </div>
+      <div id="toolbar-fittoview" class="toolbarbutton" title="Fit to View">
+        <span class="ksfont-zoom-to-fit"></span>
+      </div>
+      <div id="toolbar-actualsize" class="toolbarbutton" title="Actual Size">
+        <span class="ksfont-zoom-to-100"></span>
+      </div>
+    </div>
+
+  </body>
+</html>

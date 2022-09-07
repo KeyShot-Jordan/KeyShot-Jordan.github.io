@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Keyshot Web Configurator Instructions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        html, body { height: 100%; }
+        body {
+            margin: 0 auto;
+            padding: 10px;
+            max-width: 1000px;
+            font-family: "Open Sans", sans-serif;
+        }
+        pre {
+            padding: 20px;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            color: #333366;
+            overflow-x: scroll;
+            max-width: 100%;
+            font-size: 1.2em;
+        }
+        pre:before {
+            content: "1 ";
+            color: #bbbbbb;
+        }
+        a, a:visited {
+            text-decoration: none;
+            color: #0066ff;
+        }
+        a:hover {
+            color: #0099ff;
+        }
+    </style>
+  </head>
+  <body>
+    <h2>KeyShot Web Configurator files</h2>
+    <p>The KeyShot Web Configurator files are available in the folder <i>C:\Users\Jordan Doane\Documents\KSWEB 0907\Config\ShoeTraining.12</i></p>
+    <p>It can be accessed by opening the file <a href="keyshot-configurator.html">keyshot-configurator.html</a> in that folder.</p>
+    <iframe src="keyshot-configurator.html" frameborder="0" scrolling="no" style="max-width: 1920px; max-height: 1080px; height: 100%; width: 100%;"></iframe>
+
+    <h2>Uploading to and displaying on your website</h2>
+    <p>Upload the 'ShoeTraining.12' folder with all of its contents to your webserver, and insert the code below on your webpage:</p>
+    <pre>&lt;iframe src="ShoeTraining.12/keyshot-configurator.html" frameborder="0" scrolling="no" style="max-width: 1920px; max-height: 1080px; height: 100%; width: 100%;"&gt;&lt;/iframe&gt;</pre>
+    <p>The <i>max-width</i> and <i>max-height</i> values are the size of the images rendered for the Web Configurator. They will make sure the Web Configurator is not taking up more space than needed. They can be edited/omitted, and the configurator view will adapt.</p>
+  </body>
+</html>

@@ -1,0 +1,435 @@
+@font-face {
+    font-family: "ks-configurator-icons";
+    src: url("fonts/ks-configurator-icons.woff") format("woff"),
+         url("fonts/ks-configurator-icons.ttf") format("truetype"),
+         url("fonts/ks-configurator-icons.svg#ks-configurator-icons") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ksfont-arrow-left::before { content: "\e001"; }
+.ksfont-arrow-right::before { content: "\e002"; }
+.ksfont-arrow-up::before { content: "\e00f"; }
+.ksfont-arrow-down::before { content: "\e000"; }
+.ksfont-angle-dbl-left::before { content: "\e0fa"; }
+.ksfont-angle-dbl-right::before { content: "\e0f9"; }
+.ksfont-reset::before { content: "\e008"; }
+.ksfont-save-configuration::before { content: "\e0ff"; }
+.ksfont-zoom-in::before { content: "\e0fe"; }
+.ksfont-zoom-out::before { content: "\e0fd"; }
+.ksfont-zoom-to-fit::before { content: "\e0fb"; }
+.ksfont-zoom-to-100::before { content: "\e0fc"; }
+
+:root {
+    --color-panel-background: rgba(50,50,50,0.25);
+    --color-panel-border: rgba(85,85,85,1);
+    --color-title-text: rgba(255,255,255,1);
+    --color-title-background: rgba(80,80,80,0.3);
+    --color-title-text-selected: rgba(255,255,255,1);
+    --color-title-background-selected: rgba(0,153,255,1);
+    --color-title-text-hover: rgba(255,255,255,1);
+    --color-title-background-hover: rgba(0,102,255,1);
+    --color-thumbnail-text: rgba(90,90,90,1);
+    --color-thumbnail-background: rgba(255,255,255,0);
+    --color-thumbnail-border: rgba(255,255,255,0);
+    --color-thumbnail-text-selected: rgba(90,90,90,1);
+    --color-thumbnail-background-selected: rgba(255,255,255,0.1);
+    --color-thumbnail-border-selected: rgba(255,255,255,0);
+    --color-thumbnail-text-hover: rgba(90,90,90,1);
+    --color-thumbnail-background-hover: rgba(255,255,255,0.1);
+    --color-thumbnail-border-hover: rgba(0,153,255,1);
+    --color-window-background: rgba(97,97,97,1);
+    --size-titles-font: 11;
+    --size-thumbnail-font: 9;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background: var(--color-window-background);
+    position: relative;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --image-top: 0;
+    --image-left: 0;
+    --image-zoom-factor: 1;
+}
+
+.mainimg {
+    flex: 0 0 auto;
+    position: relative;
+    top: calc(var(--image-top) * 1px);
+    left: calc(var(--image-left) * 1px);
+    transform: scale(var(--image-zoom-factor));
+}
+
+.movablecursor {
+    cursor: move;
+}
+
+.toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--color-panel-background);
+}
+
+.toolbarbutton {
+    font-family: "ks-configurator-icons";
+    font-size: 20pt;
+    user-select: none;
+    -webkit-user-select: none;
+    padding-bottom: 10px;
+    color: #8A8A8A;
+}
+.toolbarbutton:hover {
+    color: #73B0F0;
+}
+.toolbarbutton.selected {
+    color: #0092FF;
+}
+
+.panelarea {
+    position: absolute;
+    display: flex;
+    background: var(--color-panel-background);
+    --flowwidget-first-size: 50;
+    /* This is set to "100 - flowwidget-first-size". It looks like Firefox doesn't like calc() in flex: values (observed in version 56) */
+    --flowwidget-second-size: 50;
+}
+
+.panelarea.layouthorizontal {
+    left: 0;
+    bottom: 0;
+    height: calc(var(--touch-ui-height) * 1%);
+    width: calc(100% - 40px);
+    flex-direction: row;
+}
+
+.panelarea.layoutvertical {
+    top: 0;
+    right: 40px;
+    height: 100%;
+    width: calc(var(--touch-ui-height) * 1%);
+    flex-direction: column;
+}
+
+.panelarea > .flowwidget:first-child {
+    flex: var(--flowwidget-first-size) var(--flowwidget-first-size) 0;
+}
+.panelarea > .flowwidget:not(:first-child) {
+    flex: var(--flowwidget-second-size) var(--flowwidget-second-size) 0;
+}
+
+.flowwidgetbody {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 100%;
+    overflow: auto;
+    border: none;
+    background: transparent;
+    color: white;
+    box-sizing: border-box;
+    padding: 3px;
+    font-size: calc(var(--size-thumbnail-font) * 1pt);
+    --thumbnail-size-percentage: 50%;
+    --current-thumbnail-width: 128px;
+    --current-thumbnail-height: 128px;
+}
+
+.flexaligncontentworkaround .flowselectionbody::before {
+    content: "";
+    flex: 0 0 100%;
+    width: 0;
+}
+
+.flowselectionbody > * {
+    flex: 0 0 var(--thumbnail-size-percentage);
+    min-height: 0;
+}
+.flowaccordiongroup.selected > .flowaccordiongroupbody > * {
+    width: var(--thumbnail-size-percentage);
+    flex: 0 0 auto;
+    min-height: 0;
+}
+
+.flowthumbnailitem {
+    box-sizing: border-box;
+    padding: 3px;
+}
+
+.flowthumbnailitem > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-width: 2px;
+    border-radius: 2px;
+    border-style: solid;
+    background: var(--color-thumbnail-background);
+    border-color: var(--color-thumbnail-border);
+    color: var(--color-thumbnail-text);
+    box-sizing: border-box;
+    min-width: 0;
+}
+.flowselectionbody.listlayout .flowthumbnailitem > div {
+    flex-direction: row;
+}
+.flowthumbnailitem > div > * {
+    min-height: 0;
+}
+.flowselectionbody > .flowthumbnailitem > div > :first-child {
+    flex: 1 1 0;
+    width: var(--current-thumbnail-width);
+}
+.flowselectionbody > .flowthumbnailitem > div > img {
+    object-fit: contain;
+}
+.flowselectionbody.listlayout > .flowthumbnailitem > div > :first-child {
+    flex: 0 0 auto;
+    height: 100%;
+    width: auto;
+}
+.flowselectionbody.listlayout > .flowthumbnailitem > div > svg {
+    max-width: none;
+    max-height: 50px;
+}
+.flowselectionbody > .flowthumbnailitem > div > span {
+    max-width: var(--current-thumbnail-width);
+}
+.flowselectionbody.listlayout > .flowthumbnailitem > div > span {
+    width: 12em;
+    max-width: none;
+    padding-left: 5px;
+}
+.flowaccordiongroupbody > .flowthumbnailitem > div > :first-child {
+    width: 100%;
+}
+.flowaccordiongroupbody > .flowthumbnailitem > div > img {
+    flex: 0 0 auto;
+}
+.flowaccordiongroupbody > .flowthumbnailitem > div > span {
+    max-width: 100%;
+}
+.flowthumbnailitem > div > span {
+    flex: 0 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 2px;
+}
+.flowthumbnailitem > div > svg {
+    max-width: 50px;
+}
+.flowaccordiongroupbody > .flowthumbnailitem > div > svg {
+    height: var(--current-thumbnail-height);
+}
+.flowthumbnailitem > div > svg path {
+    fill: var(--color-thumbnail-text);
+}
+
+.hidethumbnailtext .flowthumbnailitem > div > span {
+    display: none;
+}
+
+.flowthumbnailitem > div:hover {
+    background: var(--color-thumbnail-background-hover);
+    border-color: var(--color-thumbnail-border-hover);
+    color: var(--color-thumbnail-text-hover);
+}
+.flowthumbnailitem > div.selected, .flowthumbnailitem > div.selected:hover {
+    background: var(--color-thumbnail-background-selected);
+    border-color: var(--color-thumbnail-border-selected);
+    color: var(--color-thumbnail-text-selected);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.nodisplay {
+    display: none;
+}
+
+.flowselection {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.flowselectionheaderbox {
+    position: absolute;
+    bottom: 100%;
+    font-size: calc(var(--size-titles-font) * 1pt);
+}
+
+.flowselectionheaderbox > div {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.flowheadertextbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5em;
+    white-space: nowrap;
+    color: var(--color-title-text);
+    background-color: var(--color-title-background);
+    --headertext-title: "Title";
+    --headertext-value: "Current Value";
+}
+.flowheadertextbox:hover {
+    color: var(--color-title-text-hover);
+    background-color: var(--color-title-background-hover);
+}
+.flowselectionheaderscrollbox {
+    border-left: 1px solid var(--color-panel-border);
+}
+.flowselectionheaderscrollbox > div {
+    padding: 0.5em;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.flowheadertextbox.selected, .flowaccordiongroup.selected > .flowheadertextbox, .flowselectionheaderscrollbox > div {
+    color: var(--color-title-text-selected);
+    background: var(--color-title-background-selected);
+}
+
+.flowheadertextbox.selected:hover, .flowaccordiongroup.selected > .flowheadertextbox:hover, .flowselectionheaderscrollbox > div:hover {
+    color: var(--color-title-text-hover);
+    background: var(--color-title-background-hover);
+}
+
+.flowheadertext {
+    flex: 1 1 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+.flowheadertext::before {
+    content: var(--headertext-title);
+}
+.flowheadertext::after {
+    content: var(--headertext-value);
+    font-weight: normal;
+}
+
+.flowheadermarker {
+    flex: 0 0 auto;
+    font-family: "ks-configurator-icons";
+    padding-left: 0.3em;
+}
+
+.flowselectionheaderscroller {
+    user-select: none;
+    -webkit-user-select: none;
+}
+.flowselectionheaderscroller > span {
+    font-family: "ks-configurator-icons";
+    vertical-align: middle;
+    line-height: 1px;
+}
+
+.flowselection .flowselectionheadermenu.hidden + .flowheadertextbox .flowheadermarker.ksfont-arrow-up {
+    display: none;
+}
+.flowselection .flowselectionheadermenu:not(.hidden) + .flowheadertextbox .flowheadermarker.ksfont-arrow-left {
+    display: none;
+}
+.flowselection .flowselectionheadermenu:not(.multioptions) + .flowheadertextbox .flowheadermarker {
+    display: none;
+}
+
+.flowaccordion {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+.flowaccordiongroup {
+    flex: 0 0 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+.flowaccordiongroup.selected {
+    flex: 1 1 auto;
+}
+.flowaccordiongroup > .flowaccordionheader {
+    flex: 0 0 auto;
+    font-size: calc(var(--size-titles-font) * 1pt);
+}
+.flowaccordiongroup > .flowaccordiongroupbody {
+    flex: 0 1 auto;
+}
+
+.flowaccordiongroup > .flowaccordiongroupbody {
+    display: none;
+}
+
+.flowaccordiongroup.selected > .flowaccordiongroupbody {
+    display: flex;
+}
+
+.flowaccordiongroup.selected .flowheadermarker.ksfont-arrow-left {
+    display: none;
+}
+.flowaccordiongroup:not(.selected) .flowheadermarker.ksfont-arrow-down {
+    display: none;
+}
+.flowaccordiongroup:only-child .flowaccordionheader .flowheadermarker {
+    display: none;
+}
+
+.flowwidgetdraghandle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: none;
+}
+
+.layouthorizontal .flowwidgetdraghandle {
+    flex-direction: column;
+    cursor: col-resize;
+}
+.layoutvertical .flowwidgetdraghandle {
+    flex-direction: row;
+    cursor: row-resize;
+}
+
+.flowwidgetdraghandledot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #8A8A8A;
+}
+.layouthorizontal .flowwidgetdraghandledot {
+    margin: 2px 1px;
+}
+.layoutvertical .flowwidgetdraghandledot {
+    margin: 1px 2px;
+}
+
+.flowwidgetdraghandle:hover > .flowwidgetdraghandledot {
+    background-color: #73B0F0;
+}

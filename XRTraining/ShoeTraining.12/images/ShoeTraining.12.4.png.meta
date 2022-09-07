@@ -1,0 +1,42 @@
+{
+    "image": "ShoeTraining.12.4",
+    "model_sets": [
+        "Shoe",
+        "Super Sole"
+    ],
+    "multi_materials": [
+        {
+            "base_material": "Outsole #3",
+            "sub_material": "Dark Grey"
+        },
+        {
+            "base_material": "Stitch 3",
+            "sub_material": "Tan"
+        },
+        {
+            "base_material": "Tongue and Cap",
+            "sub_material": "Tan"
+        },
+        {
+            "base_material": "Outsole",
+            "sub_material": "White"
+        },
+        {
+            "base_material": "Upper",
+            "sub_material": "Tan"
+        },
+        {
+            "base_material": "Eyelets",
+            "sub_material": "Gold"
+        },
+        {
+            "base_material": "Laces",
+            "sub_material": "Tan"
+        },
+        {
+            "base_material": "Leather 2",
+            "sub_material": "Tan"
+        }
+    ],
+    "studio": "Front"
+}

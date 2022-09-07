@@ -1,0 +1,38 @@
+{
+    "image": "ShoeTraining.12.3",
+    "model_sets": [
+        "Shoe",
+        "Normal Sole"
+    ],
+    "multi_materials": [
+        {
+            "base_material": "Stitch 3",
+            "sub_material": "Blue"
+        },
+        {
+            "base_material": "Tongue and Cap",
+            "sub_material": "Light Blue"
+        },
+        {
+            "base_material": "Outsole",
+            "sub_material": "White"
+        },
+        {
+            "base_material": "Upper",
+            "sub_material": "Light Blue"
+        },
+        {
+            "base_material": "Eyelets",
+            "sub_material": "Gold"
+        },
+        {
+            "base_material": "Laces",
+            "sub_material": "Blue"
+        },
+        {
+            "base_material": "Leather 2",
+            "sub_material": "Light Blue"
+        }
+    ],
+    "studio": "Front"
+}

@@ -1,0 +1,42 @@
+{
+    "image": "ShoeTraining.12.33",
+    "model_sets": [
+        "Shoe",
+        "Super Sole"
+    ],
+    "multi_materials": [
+        {
+            "base_material": "Outsole #3",
+            "sub_material": "Black"
+        },
+        {
+            "base_material": "Stitch 3",
+            "sub_material": "Black"
+        },
+        {
+            "base_material": "Tongue and Cap",
+            "sub_material": "Dark Grey"
+        },
+        {
+            "base_material": "Outsole",
+            "sub_material": "Black"
+        },
+        {
+            "base_material": "Upper",
+            "sub_material": "Dark Grey"
+        },
+        {
+            "base_material": "Eyelets",
+            "sub_material": "Chrome"
+        },
+        {
+            "base_material": "Laces",
+            "sub_material": "Black"
+        },
+        {
+            "base_material": "Leather 2",
+            "sub_material": "Dark Grey"
+        }
+    ],
+    "studio": "Iso"
+}
